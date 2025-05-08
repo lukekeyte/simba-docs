@@ -6,7 +6,7 @@
 
 `SIMBA` can be installed using pip:
 ```bash
-pip install simba  # not yet working!
+pip install simba_chem
 ```
 
 

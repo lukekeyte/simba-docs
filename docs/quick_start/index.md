@@ -7,7 +7,7 @@ Running a ```SIMBA``` model is simple:
 4. Run the solver
 
 ```python
-import simba
+import simba_chem as simba
 
 # Create the input file
 simba.create_input("path/to/save/input_file.dat")  # then open and set parameter values

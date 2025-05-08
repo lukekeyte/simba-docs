@@ -308,9 +308,9 @@ First, initialize the model, run the simulation, and instantiate the `Analysis` 
 ```python
 import simba_chem as simba
 network = simba.Simba()                          # create an instance of SIMBA
-network.init_simba("path/to/input_file.dat")       # initialise the network
-network.solve_network()                              # run the solver
-analysis = simba.Analysis(network)                 # access analysis
+network.init_simba("path/to/input_file.dat")     # initialise the network
+network.solve_network()                          # run the solver
+analysis = simba.Analysis(network)               # access analysis
 ```
 
 ### Abundances vs. Time
