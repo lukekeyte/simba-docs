@@ -1,0 +1,9 @@
+/* Change the logo background color */
+.wy-side-nav-search {
+    background-color: #444444; /* Change to your desired color */
+}
+
+/* Change the main navigation sidebar background color */
+.wy-nav-side {
+    background-color: #444444; /* Change to your desired color for sidebar */
+}

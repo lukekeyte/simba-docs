@@ -1,0 +1,8 @@
+# Graphical User Interface (GUI)
+
+![SIMBA graphical user interface](/_static/fig_lukenet_gui.png)
+
+To enhance accessibility and user workflow, `SIMBA` includes a graphical interface implemented in React that integrates the core solver with interactive visualisation capabilities. The GUI is included as part of the standard `pip` installation and can be launched locally, facilitating efficient exploration of chemical models by enabling real-time manipulation of physical parameters and visualisation of results.
+The interface provides dynamic visualisation of abundance evolution, reaction rates, and chemical pathways, with comprehensive customization options. Species and reactions can be filtered based on abundance thresholds or selected manually to investigate specific chemical processes. Publication-quality figures can be exported in vector format (SVG), while numerical data can be extracted in standard formats for further analysis.
+
+A key strength of the GUI is its ability to rapidly analyse parameter dependencies without the computational overhead of full multi-dimensional models. While codes like `DALI` [(Bruderer et al. 2012)](https://ui.adsabs.harvard.edu/abs/2012A%26A...541A..91B/abstract) provide comprehensive modelling capabilities, analysing the vast output from high-resolution models (often hundreds of gigabytes) can be cumbersome. The `SIMBA` GUI complements such models by allowing users to efficiently explore chemical evolution under varying conditions at specific points of interest. This makes it particularly valuable for investigating reaction mechanisms, understanding parameter sensitivities, and analysing localized chemical processes.
