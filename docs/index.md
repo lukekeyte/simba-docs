@@ -16,7 +16,7 @@ If you are having any issues, please email [l.keyte@qmul.ac.uk](mailto:l.keyte@q
 
 ## Citation
 
-If you use `SIMBA` as part of your research, please cite the MNRAS article:
+If you use `SIMBA` as part of your research, please cite our code overview article:
 
 ```
 @article{SIMBA,
@@ -24,13 +24,13 @@ If you use `SIMBA` as part of your research, please cite the MNRAS article:
     url = {[DOI URL]},
     year = {[YEAR]},
     month = {[MONTH]},
-    publisher = {Oxford University Press (OUP)},
+    publisher = {[PUBLISHER]},
     volume = {[VOLUME]},
     number = {[ISSUE NUMBER]},
     pages = {[PAGE NUMBERS]},
     author = {L. Keyte},
-    title = {LukeNet: A Python-based single-point chemical solver with analysis tool},
-    journal = {Monthly Notices of the Royal Astronomical Society}
+    title = {SIMBA: A Python-based single-point chemical solver with analysis tool},
+    journal = {[JOURNAL]}
 }
 ```
 

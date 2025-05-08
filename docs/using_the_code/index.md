@@ -16,7 +16,7 @@ Each dataclass includes validation methods that ensure physical constraints are 
 
 Rate coefficients are calculated using a type-based classification system that is deliberately compatible with the established ```DALI``` code [(Bruderer et al. 2012](https://ui.adsabs.harvard.edu/abs/2012A%26A...541A..91B/abstract), [2013](https://ui.adsabs.harvard.edu/abs/2013A%26A...559A..46B/abstract)). By adopting the same reaction type identifiers, ```SIMBA``` can seamlessly use chemical networks developed for ```DALI``` without requiring reformatting or conversion. This design choice facilitates network validation and comparison of results between codes, and a detailed benchmarking of ```SIMBA``` against ```DALI``` is presented in our code overview paper. While the code currently reads networks in the ```DALI``` format, the modular structure allows users to easily implement additional parsers for other network formats, provided they map the reactions to the appropriate type identifiers. An example network (first presented in [Keyte et al. 2023](https://ui.adsabs.harvard.edu/abs/2023NatAs...7..684K/abstract)) is provided with the code.
 
-The core solver is implemented in the ```SIMBA``` class, which manages the chemical network integration. This class employs the ```scipy.integrate.solve_ivp``` routine with the backward differentiation formula (BDF) method, which is particularly suitable for the stiff systems characteristic of astrochemical networks. Performance-critical numerical routines are optimized using ```numba``` just-in-time compilation. This includes the calculation of chemical derivatives and the Jacobian matrix. The derivatives function computes formation and destruction rates for each species, while the Jacobian calculation is optimized for the typically sparse structure of chemical networks, where most species interact with only a small subset of the total network.
+The core solver is implemented in the ```Simba``` class, which manages the chemical network integration. This class employs the ```scipy.integrate.solve_ivp``` routine with the backward differentiation formula (BDF) method, which is particularly suitable for the stiff systems characteristic of astrochemical networks. Performance-critical numerical routines are optimized using ```numba``` just-in-time compilation. This includes the calculation of chemical derivatives and the Jacobian matrix. The derivatives function computes formation and destruction rates for each species, while the Jacobian calculation is optimized for the typically sparse structure of chemical networks, where most species interact with only a small subset of the total network.
 
 Self-shielding calculations are handled by a dedicated module that pre-loads tabulated shielding factors during initialization. For $\small{\text{CO}}$ and $\small{\text{N}}_2$, this module implements interpolation routines that operate on the tabulated data, while $\small{\text{H}}_2$ and $\small{\text{C}}$ self-shielding are computed using their analytical approximations. 
 
@@ -48,7 +48,7 @@ column         = True
 Zeta_CR        = 5e-17
 pah_ism        = 0.1
 t_chem         = 1e6
-network        = 'network/data_chemnet4.dat'
+network        = 'chemical_network.dat'
 ```
 
 ### Parameter Definitions
@@ -75,9 +75,7 @@ network        = 'network/data_chemnet4.dat'
 ### Creating an Input File
 You can generate a template input file using the built-in helper function:
 ```python
-import simba
-
-# Generate default input file
+import simba_chem as simba
 simba.create_input("path/to/save/input_file.dat")    # then modify with your specific parameters
 ```
 
@@ -85,14 +83,14 @@ simba.create_input("path/to/save/input_file.dat")    # then modify with your spe
 
 ## Chemical Network
 
-The chemical network file specifies the complete set of chemical species, reactions, and rate coefficients that drive the chemical evolution in `SIMBA`. By design, `SIMBA` is configured to read chemical networks with identical format to that of the widely-used `DALI` astrochemistry code, enabling direct comparison with published results and facilitating ease-of-use.
+The chemical network file specifies the complete set of chemical species, reactions, and rate coefficients that drive the chemical evolution in `SIMBA`. By design, `SIMBA` is configured to read chemical networks with identical format to that of the widely-used `DALI` thermochemical code, enabling direct comparison with published results and facilitating ease-of-use.
 
 ### Default Network
 
 A standard chemical network is included with the installation (originally presented in [Keyte et al. 2023](https://ui.adsabs.harvard.edu/abs/2023NatAs...7..684K/abstract)). You can create a copy of this network using the helper function:
 
 ```python
-import simba
+import simba_chem as simba
 simba.create_network("directory/to/save/network/")
 ```
 The copied network file can then be modified to include additional reactions, adjusted for specific chemical conditions, or used as a template for creating a new network.
@@ -275,7 +273,26 @@ The network includes several categories of reactions, indicated by the type code
 
 ## Running the Code
 
-See Quick Start guide.
+### Single-point (0D) models
+
+A single-point model can be run easily with just a few lines of code. See the Quick Start guide for details.
+
+### 1D (+higher dimension) models
+
+```SIMBA``` can be easily extended from single-point (0D) to multi-dimensional models by creating a grid of input parameters and running individual instances for each grid cell. This approach allows you to efficiently model chemical evolution across spatial gradients in density, temperature, radiation field strength, or any other environmental parameter.
+
+Most astrochemical modeling codes implement "static" models, where each grid cell is initialized with identical starting abundances and evolved to the same chemical age. The only differences between cells are the physical parameters (density, temperature, radiation field, etc.). SIMBA readily supports this conventional approach:
+
+[EXAMPLE HERE]
+
+```SIMBA``` offers additional flexibility for modeling systems with time-varying physical conditions. Unlike static models, this approach allows you to track chemical evolution through dynamically changing environments by:
+
+* Running a model with initial physical conditions
+* Using the final chemical state as the initial state for the next model
+* Updating physical parameters for the next time step
+* Repeating to follow the chemical evolution through the changing environment
+
+This capability is particularly valuable for modeling systems undergoing significant physical changes, such as protoplanetary disks with evolving temperature/density profiles, gas parcels moving through varying radiation environments etc. A simple dynamical 1D model is presented in our code overview paper.
 
 <br><br>
 
@@ -289,6 +306,7 @@ The `Analysis` module provides simple plotting routines for visualizing results,
 First, initialize the model, run the simulation, and instantiate the `Analysis` module:
 
 ```python
+import simba_chem as simba
 network = simba.Simba()                          # create an instance of SIMBA
 network.init_simba("path/to/input_file.dat")       # initialise the network
 network.solve_network()                              # run the solver
