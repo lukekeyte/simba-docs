@@ -32,7 +32,7 @@ html_static_path = ['_static']
 
 html_css_files = ['custom.css']
 
-html_logo = '_static/logo_5.png'
+html_logo = '_static/simba_logo.png'
 
 # Enable numbering for headers
 myst_heading_anchors = 3
