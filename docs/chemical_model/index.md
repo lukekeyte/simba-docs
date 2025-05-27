@@ -58,7 +58,7 @@ for electron production from cosmic ray ionisation (primarily from $\small{\text
 
 ### Other gas-phase reactions
 
-Describe the other types of gas-phase reactions here.
+The model also includes cosmic-ray and X-ray ionization processes, with both direct ionization and secondary electron effects ([Gredel et al. 1987](https://ui.adsabs.harvard.edu/abs/1987ApJ...323L.137G/abstract); Maloney et al. 1996; Yan 1997; Stäuber et al.2005). Simple PAH chemistry is incorporated through charge exchange and electron attachment/detachment processes (Le Page et al.2001; Wolfire et al. 2003; Jonkheid et al. 2006), with PAH abundances scaled relative to ISM values. Reactions with vibrationally excited H2 are included following London (1978); Tielens & Hollenbach (1985); Visser et al. (2018)
 
 
 <br/>
