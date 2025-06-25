@@ -9,8 +9,11 @@ Running a ```SIMBA``` model is simple:
 ```python
 import simba_chem as simba
 
-# Create the input file
+# Create the input file (or use a preexisting file
 simba.create_input("path/to/save/input_file.dat")  # then open and set parameter values
+
+# Create the chemical network file (or use a preexisting file)
+simba.create_network("directory/to/save/network/") # then open and set initial abundances
 
 # Run SIMBA
 network = simba.Simba()                            # create an instance of SIMBA

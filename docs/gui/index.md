@@ -2,7 +2,7 @@
 
 ![SIMBA graphical user interface](/_static/fig_lukenet_gui.png)
 
-To streamline the user experience, `SIMBA` includes a modern browser-based graphical interface built in React. The GUI provides dynamic visualization of abundance evolution, reaction rates, and chemical pathways, with comprehensive customization options. Species and reactions can be filtered based on abundance thresholds or selected manually to investigate specific chemical processes. Publication-quality figures can be exported in vector format (SVG), while numerical data can be extracted in standard formats for further analysis.
+`SIMBA` features a modern browser-based graphical interface built in React. The GUI provides dynamic visualization of abundance evolution, reaction rates, and chemical pathways, with comprehensive customization options. Species and reactions can be filtered based on abundance thresholds or selected manually to investigate specific chemical processes. Publication-quality figures can be exported in vector format (SVG), while numerical data can be extracted in standard formats for further analysis.
 
 ## Prerequisites
 

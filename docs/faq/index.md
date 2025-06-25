@@ -3,10 +3,10 @@
 ## General Questions
 
 ### What is SIMBA?
-`SIMBA` is a Python software package that numerically solves time-dependent chemical reaction networks for astrophysical environments. The code is specifically optimized for modeling complex chemical evolution in settings such as the interstellar medium (ISM), molecular clouds, and protoplanetary disks.
+`SIMBA` is a Python software package that numerically solves time-dependent chemical reaction networks for astrophysical environments. The code is can be used for modeling complex chemical evolution in settings such as the interstellar medium (ISM), molecular clouds, and protoplanetary disks.
 
 ### How does SIMBA compare to other astrochemistry codes?
-`SIMBA` is designed to be compatible with the established `DALI` code format, allowing seamless use of chemical networks developed for `DALI` without requiring reformatting or conversion. This design choice facilitates network validation and comparison of results between codes. A detailed benchmarking of `SIMBA` against `DALI` is presented in our code overview paper.
+`SIMBA` is designed to be compatible with the established `DALI` code format, allowing seamless use of chemical networks developed for `DALI` without requiring reformatting or conversion. This means that `SIMBA` can be used to complement more complex higher-dimensional codes like `DALI`, by providing a quick and easy way to explore parameter dependencies and extract key information such as reaction rates and pathways. A detailed benchmarking of `SIMBA` against `DALI` is presented in our code overview paper.
 
 ### What physical processes does SIMBA model?
 `SIMBA` models a comprehensive set of physical processes, including:
@@ -21,7 +21,10 @@
 ## Installation & Setup
 
 ### Is SIMBA available via pip?
-Not yet! While we plan to make `SIMBA` available via pip in the future, currently you need to download the source code from our repository.
+Yes. `SIMBA` can be installed from the command line via:
+```bash
+pip install simba_chem
+```
 
 ### What are the system requirements for running SIMBA?
 `SIMBA` requires:
@@ -31,13 +34,15 @@ Not yet! While we plan to make `SIMBA` available via pip in the future, currentl
 - Matplotlib
 - Numba (for just-in-time compilation of performance-critical routines)
 
+Additionally, the GUI requires [Node.js](https://nodejs.org/en) to be preinstalled.
+
 ### What are the computational requirements for SIMBA?
 SIMBA is designed to be lightweight and can run on standard desktop or laptop hardware. For most applications with networks containing ~100-200 species and ~1000-2000 reactions, a modern dual-core processor with 4GB RAM is sufficient. Larger networks or longer timescales may benefit from additional computational resources. The GUI requires minimal additional resources beyond the core solver. Typical runtime is 5-30 seconds.
 
 ## Chemical Networks
 
 ### Can I use my own chemical network with SIMBA?
-Yes! While `SIMBA` is configured by default to use chemical networks in the `DALI` format, the modular structure allows you to implement your own parser for different network formats. See the "Alternative Network Formats" section in the documentation for details.
+Yes, but you will need ensure it is in the `DALI` format. Alternatively, the modular structure makes it relatively straightforward to implement your own parser for different network formats. See the "Alternative Network Formats" section in the documentation for details.
 
 ### How do I add new reactions to the network?
 To add new reactions to the network, you'll need to edit the chemical network file, ensuring you follow the correct format:
@@ -53,10 +58,10 @@ To add new reactions to the network, you'll need to edit the chemical network fi
 
 ### How can I improve convergence for difficult models?
 If your model is having convergence issues, try these approaches:
-1. Increase the temperature slightly to avoid very stiff reaction networks
-2. Adjust the solver tolerance parameters using the `rtol` and `atol` options
-3. Try running the model with a smaller chemical time to reach a stable state, then use those results as initial conditions for a longer run
-4. Simplify your chemical network by removing unimportant reactions
+1. Adjust the solver tolerance parameters using the `rtol` and `atol` options
+2. Reduce the size of your chemical network if possible
+3. Simplify your chemical network by removing unimportant reactions
+4. Increase/decrease the temperature very slightly
 
 ### How do I interpret the output from SIMBA?
 The terminal output provides a summary of the model parameters, integration statistics, and key results like the most abundant species and dominant reactions. More detailed results are stored in the returned solution object, which can be accessed for custom analysis or visualized using the built-in `Analysis` module.
@@ -103,27 +108,6 @@ analysis = simba.Analysis(network)
 analysis.export_abundances('abundances.csv')
 ```
 
-## Troubleshooting
-
-### Why is my simulation running very slowly?
-Chemical network simulations can be computationally intensive. To improve performance:
-1. Use the included numba-optimized routines
-2. Reduce the size of your chemical network if possible
-3. Adjust the solver parameters for a performance/accuracy trade-off
-4. For very large networks, consider running on a more powerful machine
-
-### I'm getting "stiff system" warnings. What should I do?
-Stiff systems are common in astrochemical networks due to the wide range of reaction timescales. `SIMBA` uses the BDF method which is designed for stiff systems, but you may need to:
-1. Increase the maximum number of integration steps
-2. Adjust the error tolerances
-3. Check for unrealistic rate coefficients in your network
-
-### How do I debug a custom chemical network?
-To debug a custom chemical network:
-1. Start with a simplified version of your network
-2. Validate individual reactions against analytical solutions where possible
-3. Use the `plot_reaction_rate` function to examine how specific reactions behave
-4. Check the conservation of elements and charge as a sanity check
 
 ## Support and Contribution
 
@@ -131,10 +115,16 @@ To debug a custom chemical network:
 Please email [l.keyte@qmul.ac.uk](mailto:l.keyte@qmul.ac.uk) with a detailed description of the bug or feature request. Include information about your system, SIMBA version, and any relevant code snippets or input files.
 
 ### How can I contribute to SIMBA?
-We welcome contributions! Please contact us to discuss how you might contribute to the project, whether through code development, documentation improvements, or network validations.
+We welcome contributions! Please contact us to discuss how you might contribute to the project.
 
 ### Where can I find more examples of SIMBA in use?
 Examples of `SIMBA` applications can be found in:
 - The included examples directory
 - Our code paper (citation in the documentation)
-- [Keyte et al. 2023](https://ui.adsabs.harvard.edu/abs/2023NatAs...7..684K/abstract), which demonstrates a practical application of the code
+
+
+## Miscellaneous
+
+### What is LukeNet?
+LukeNet? I've never heard of it.
+
