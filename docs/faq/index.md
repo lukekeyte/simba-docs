@@ -6,7 +6,7 @@
 `SIMBA` is a Python software package that numerically solves time-dependent chemical reaction networks for astrophysical environments. The code is can be used for modeling complex chemical evolution in settings such as the interstellar medium (ISM), molecular clouds, and protoplanetary disks.
 
 ### How does SIMBA compare to other astrochemistry codes?
-`SIMBA` is designed to be compatible with the established `DALI` code format, allowing seamless use of chemical networks developed for `DALI` without requiring reformatting or conversion. This means that `SIMBA` can be used to complement more complex higher-dimensional codes like `DALI`, by providing a quick and easy way to explore parameter dependencies and extract key information such as reaction rates and pathways. A detailed benchmarking of `SIMBA` against `DALI` is presented in our code overview paper.
+`SIMBA` is a complementary tool designed to work alongside existing higher-dimensional chemical models, offering an efficient way to explore parameter space. The code maintains full compatibility with the established `DALI` format, enabling users to apply existing chemical networks without any reformatting or conversion requirements. This compatibility allows `SIMBA` to serve as a rapid exploration tool for complex codes like `DALI`, facilitating quick analysis of parameter dependencies and extraction of key information such as reaction rates and pathways. A comprehensive benchmarking comparison between `SIMBA` and `DALI` is detailed in our code overview paper.
 
 ### What physical processes does SIMBA model?
 `SIMBA` models a comprehensive set of physical processes, including:
@@ -58,10 +58,11 @@ To add new reactions to the network, you'll need to edit the chemical network fi
 
 ### How can I improve convergence for difficult models?
 If your model is having convergence issues, try these approaches:
-1. Adjust the solver tolerance parameters using the `rtol` and `atol` options
-2. Reduce the size of your chemical network if possible
-3. Simplify your chemical network by removing unimportant reactions
-4. Increase/decrease the temperature very slightly
+1. Check that your chemical network is 'closed' (ie. all species have formation and destruction rates)
+2. Simplify your chemical network by removing unimportant reactions
+3. Slightly peturb input parameter values
+4. Relax the tolerances (`atol` and `rtol`) that are hard-coded into the core.py module (at your own risk!)
+
 
 ### How do I interpret the output from SIMBA?
 The terminal output provides a summary of the model parameters, integration statistics, and key results like the most abundant species and dominant reactions. More detailed results are stored in the returned solution object, which can be accessed for custom analysis or visualized using the built-in `Analysis` module.
@@ -77,7 +78,7 @@ The `Analysis` module provides basic plotting routines, but you can also access 
 ```python
 # Access the raw data
 time = network.time  # time points in seconds
-abundances = network.species_abundance  # species abundances over time
+abundances = network.species.abundance  # species abundances over time
 
 # Create custom plots
 import matplotlib.pyplot as plt
@@ -126,5 +127,5 @@ Examples of `SIMBA` applications can be found in:
 ## Miscellaneous
 
 ### What is LukeNet?
-LukeNet? I've never heard of it.
+LukeNet?
 

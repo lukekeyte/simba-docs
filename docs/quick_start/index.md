@@ -21,6 +21,8 @@ network.init_simba("path/to/input_file.dat")       # initialise the network
 result = network.solve_network()                   # run the solver
 ```
 
+***NOTE**: The `create_input()` function takes in the file name but the `create_network()` function takes in the directory in which to save the network.*
+
 Important information will be output in the console, which typically looks like this:
 
 ```bash
