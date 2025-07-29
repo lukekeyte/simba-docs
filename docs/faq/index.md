@@ -37,7 +37,7 @@ pip install simba_chem
 Additionally, the GUI requires [Node.js](https://nodejs.org/en) to be preinstalled.
 
 ### What are the computational requirements for SIMBA?
-SIMBA is designed to be lightweight and can run on standard desktop or laptop hardware. For most applications with networks containing ~100-200 species and ~1000-2000 reactions, a modern dual-core processor with 4GB RAM is sufficient. Larger networks or longer timescales may benefit from additional computational resources. The GUI requires minimal additional resources beyond the core solver. Typical runtime is 5-30 seconds.
+`SIMBA` is designed to be lightweight and can run on standard desktop or laptop hardware. For most applications with networks containing ~100-200 species and ~1000-2000 reactions, a modern dual-core processor with 4GB RAM is sufficient. Larger networks or longer timescales may benefit from additional computational resources. The GUI requires minimal additional resources beyond the core solver. Typical runtime is 5-30 seconds.
 
 ## Chemical Networks
 
@@ -63,12 +63,19 @@ If your model is having convergence issues, try these approaches:
 3. Slightly peturb input parameter values
 4. Relax the tolerances (`atol` and `rtol`) that are hard-coded into the core.py module (at your own risk!)
 
-
 ### How do I interpret the output from SIMBA?
 The terminal output provides a summary of the model parameters, integration statistics, and key results like the most abundant species and dominant reactions. More detailed results are stored in the returned solution object, which can be accessed for custom analysis or visualized using the built-in `Analysis` module.
 
 ### Can SIMBA handle time-dependent physical conditions?
 The current version of `SIMBA` is designed for fixed physical conditions. However, time-dependent evolution can be approximated by running a series of models with different conditions and using the final state of each model as the initial conditions for the next.
+
+### How do I turn of the output in the console?
+Set the verbosity to False immediately after creating a `SIMBA` instance: 
+```python
+network = simba.Simba()     
+network.set_verbosity(False)
+# Then run the code as normal
+```
 
 ## Visualization and Analysis
 
@@ -113,7 +120,7 @@ analysis.export_abundances('abundances.csv')
 ## Support and Contribution
 
 ### How do I report a bug or request a feature?
-Please email [l.keyte@qmul.ac.uk](mailto:l.keyte@qmul.ac.uk) with a detailed description of the bug or feature request. Include information about your system, SIMBA version, and any relevant code snippets or input files.
+Please email [l.keyte@qmul.ac.uk](mailto:l.keyte@qmul.ac.uk) with a detailed description of the bug or feature request. Include information about your system, `SIMBA` version, and any relevant code snippets or input files.
 
 ### How can I contribute to SIMBA?
 We welcome contributions! Please contact us to discuss how you might contribute to the project.

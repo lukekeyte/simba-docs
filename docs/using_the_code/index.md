@@ -327,8 +327,49 @@ analysis.plot_reaction_rate([1, 7, 18, 22])
 ```
 [example plot]
 
+It can sometimes be useful to plot all the major formation and destruction reactions for a particular species. This can easily be done with a short code, eg:
+
+```python
+fig, ax = plt.subplots(1,2, figsize=(15,6), sharey=True)
+
+species = 'CO'
+
+rate_threshold = 1e-14  # only show rates above some threshold
+
+# Find reaction data
+species_formation   = []
+species_destruction = []
+
+for i in range(0, network.parameters.n_reactions):
+    if species in network.reactions.products[i]:
+        species_formation.append(i)
+    if species in network.reactions.educts[i]:
+        species_destruction.append(i)
+
+# Plot formation rates
+for i in species_formation:
+    if np.max(result['rates'][:,i]) > rate_threshold:
+        ax[0].plot(result['time']/network.parameters.yr_sec, result['rates'][:,i], label=result['reaction_labels'][i])
+
+# Plot destruction rates
+for i in species_destruction:
+    if np.max(result['rates'][:,i]) > rate_threshold:
+        ax[1].plot(result['time']/network.parameters.yr_sec, result['rates'][:,i], label=result['reaction_labels'][i])
+
+for j in range(0,2):
+    ax[j].set_xscale('log')
+    ax[j].set_yscale('log')
+    ax[j].legend()
+    
+plt.tight_layout()
+plt.show()
+```
+
 
 ### Dashboard
+
+**NOTE:** The Dashboard tool is a work-in-progress! Please use at your own risk!
+
 The dashboard displays model parameters and other useful diagnostic plots including:
 * Solver statistics
 * Quasi steady-states timescales (top 10 most abundant species)
