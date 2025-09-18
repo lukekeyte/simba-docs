@@ -125,10 +125,15 @@ Please email [l.keyte@qmul.ac.uk](mailto:l.keyte@qmul.ac.uk) with a detailed des
 ### How can I contribute to SIMBA?
 We welcome contributions! Please contact us to discuss how you might contribute to the project.
 
+### What features are planned in future releases
+We plan to incorporate a range of new features into the next release, including:
+- Steady-state solver option
+- Full treatment of photodissociation using UV cross sections
+- Option to adopt user-defined C, N2, and CO column densities for self-shielding
+- Additional visualisation tools
+
 ### Where can I find more examples of SIMBA in use?
-Examples of `SIMBA` applications can be found in:
-- The included examples directory
-- Our code paper (citation in the documentation)
+Examples of `SIMBA` applications can be found in our code paper (citation in the documentation)
 
 
 ## Miscellaneous
