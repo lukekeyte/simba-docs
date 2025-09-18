@@ -19,18 +19,20 @@ If you are having any issues, please email [l.keyte@qmul.ac.uk](mailto:l.keyte@q
 If you use `SIMBA` as part of your research, please cite our code overview article:
 
 ```
-@article{SIMBA,
-    doi = {[DOI NUMBER]},
-    url = {[DOI URL]},
-    year = {[YEAR]},
-    month = {[MONTH]},
-    publisher = {[PUBLISHER]},
-    volume = {[VOLUME]},
-    number = {[ISSUE NUMBER]},
-    pages = {[PAGE NUMBERS]},
-    author = {L. Keyte},
-    title = {SIMBA: A Python-based single-point chemical solver with analysis tool},
-    journal = {[JOURNAL]}
+@article{2025arXiv250912298K,
+       author = {{Keyte}, Luke and {Ran}, Jason},
+        title = "{SIMBA: A Python-based single-point astrochemical solver and analysis tool}",
+      journal = {arXiv e-prints},
+     keywords = {Instrumentation and Methods for Astrophysics, Earth and Planetary Astrophysics, Astrophysics of Galaxies, Solar and Stellar Astrophysics},
+         year = 2025,
+        month = sep,
+          eid = {arXiv:2509.12298},
+        pages = {arXiv:2509.12298},
+archivePrefix = {arXiv},
+       eprint = {2509.12298},
+ primaryClass = {astro-ph.IM},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2025arXiv250912298K},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
 }
 ```
 
