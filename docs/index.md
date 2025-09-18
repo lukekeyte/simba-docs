@@ -18,7 +18,7 @@ If you are having any issues, please email [l.keyte@qmul.ac.uk](mailto:l.keyte@q
 
 If you use `SIMBA` as part of your research, please cite our code overview article:
 
-```
+```bash
 @article{2025arXiv250912298K,
        author = {{Keyte}, Luke and {Ran}, Jason},
         title = "{SIMBA: A Python-based single-point astrochemical solver and analysis tool}",
