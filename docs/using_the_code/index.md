@@ -281,11 +281,9 @@ A single-point model can be run easily with just a few lines of code. See the Qu
 
 ```SIMBA``` can be easily extended from single-point (0D) to multi-dimensional models by creating a grid of input parameters and running individual instances for each grid cell. This approach allows you to efficiently model chemical evolution across spatial gradients in density, temperature, radiation field strength, or any other environmental parameter.
 
-Most astrochemical modeling codes implement "static" models, where each grid cell is initialized with identical starting abundances and evolved to the same chemical age. The only differences between cells are the physical parameters (density, temperature, radiation field, etc.). SIMBA readily supports this conventional approach:
+Most astrochemical modeling codes implement "static" models, where each grid cell is initialized with identical starting abundances and evolved to the same chemical age. The only differences between cells are the physical parameters (density, temperature, radiation field, etc.). SIMBA readily supports this conventional approach, an example of which is presented in [Keyte & Ran (2025)](https://ui.adsabs.harvard.edu/abs/2025MNRAS.543.2599K/abstract).
 
-[EXAMPLE HERE]
-
-```SIMBA``` offers additional flexibility for modeling systems with time-varying physical conditions. Unlike static models, this approach allows you to track chemical evolution through dynamically changing environments by:
+```SIMBA``` also offers additional flexibility for modeling systems with time-varying physical conditions. Unlike static models, this approach allows you to track chemical evolution through dynamically changing environments by:
 
 * Running a model with initial physical conditions
 * Using the final chemical state as the initial state for the next model
