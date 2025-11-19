@@ -398,4 +398,4 @@ Abundance data can be exported to .csv format using the helper function in the `
 # Export abundances to CSV
 analysis = simba.Analysis(network)
 analysis.export_abundance_data('abundances.csv')
-'''
+```

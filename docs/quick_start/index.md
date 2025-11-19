@@ -14,10 +14,9 @@ network.init_simba("path/to/input_file.dat")       # initialise the network
 result = network.solve_network()                   # run the solver
 ```
 
-This assumes that you already have a correctly formatted input file and chemical network file. If not, you can download example input files and chemical networks from our [GitHub repository](https://github.com/lukekeyte/SIMBA/tree/main/simba_chem/data).
+This assumes that you already have a correctly formatted input file and chemical network file. If not, you can download example input files and chemical networks from our [GitHub repository](https://github.com/lukekeyte/SIMBA/tree/main/simba_chem/data). 
 
-
-Alternatively, you can generate templates using these helper functions:
+Alternatively, you can generate template input/network files using these helper functions:
 ```python
 # Create the input file 
 simba.create_input("path/to/save/input_file.dat")  # then open and set parameter values
@@ -27,7 +26,11 @@ simba.create_network("directory/to/save/network/") # then open and set initial a
 ```
 ***NOTE**: The `create_input()` function takes in the file name but the `create_network()` function takes in the directory in which to save the network.*
 
+<br/>
 
+***
+
+<br/>
 
 When the model runs successfully, important information will be output in the console, which typically looks like this:
 
@@ -161,8 +164,13 @@ When the model runs successfully, important information will be output in the co
 ┃                                                                    ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
+<br/>
 
-Results (abundances, reaction rates etc) are stored in a dictionary. These can be plotted using functions in the ```Analysis``` module, or using your own code, for example:
+***
+
+<br/>
+
+Model outputs (abundances, reaction rates etc) can be plotted using functions in the ```Analysis``` module, or using your own code. For example, to plot some abundances vs. time:
 
 ```python
 # Plot some results
