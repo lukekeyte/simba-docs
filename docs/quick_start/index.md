@@ -9,21 +9,27 @@ Running a ```SIMBA``` model is simple:
 ```python
 import simba_chem as simba
 
-# Create the input file (or use a preexisting file
-simba.create_input("path/to/save/input_file.dat")  # then open and set parameter values
-
-# Create the chemical network file (or use a preexisting file)
-simba.create_network("directory/to/save/network/") # then open and set initial abundances
-
-# Run SIMBA
 network = simba.Simba()                            # create an instance of SIMBA
 network.init_simba("path/to/input_file.dat")       # initialise the network
 result = network.solve_network()                   # run the solver
 ```
 
+This assumes that you already have a correctly formatted input file and chemical network file. If not, you can download example input files and chemical networks from our [GitHub repository](https://github.com/lukekeyte/SIMBA/tree/main/simba_chem/data).
+
+
+Alternatively, you can generate templates using these helper functions:
+```python
+# Create the input file 
+simba.create_input("path/to/save/input_file.dat")  # then open and set parameter values
+
+# Create the chemical network file
+simba.create_network("directory/to/save/network/") # then open and set initial abundances
+```
 ***NOTE**: The `create_input()` function takes in the file name but the `create_network()` function takes in the directory in which to save the network.*
 
-Important information will be output in the console, which typically looks like this:
+
+
+When the model runs successfully, important information will be output in the console, which typically looks like this:
 
 ```bash
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -161,7 +167,7 @@ Results (abundances, reaction rates etc) are stored in a dictionary. These can b
 ```python
 # Plot some results
 analysis = simba.Analysis(network)
-analysis.plot_abundance(['CO', 'H2O', 'CH4'])
+analysis.plot_abundance(['CO', 'H2O', 'CH4'], show=True)
 ```
 
 ![Example plot: abundances vs. time](/_static/fig_plot_abundances.png)

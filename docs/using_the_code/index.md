@@ -311,19 +311,22 @@ network.solve_network()                          # run the solver
 analysis = simba.Analysis(network)               # access analysis
 ```
 
+All analysis functions return the underlying Matplotlib `Figure` and `Axes` objects, allowing users to further customize or save the plots as needed. Figures are only displayed automatically when `show=True`, ensuring consistent behavior in scripts, notebooks, and non-interactive environments.
+
+
 ### Abundances vs. Time
 The `plot_abundance()` method generates time-evolution plots for specified chemical species:
 ```python
-analysis.plot_abundance(['CO', 'H2O', 'CH4'])                         
+analysis.plot_abundance(['CO', 'H2O', 'CH4'], show=True)                         
 ```
-[example plot]
+![Example plot: abundances vs. time](/_static/fig_plot_abundances.png)
 
 ### Reaction rates vs. Time
 The `plot_reaction_rate()` method generates time-evolution plots for individual reaction rates, taking in a list of reaction IDs (as defined in the chemical network)
 ```python
-analysis.plot_reaction_rate([1, 7, 18, 22])               
+analysis.plot_reaction_rate([1, 7, 18, 22], show=True)               
 ```
-[example plot]
+![Example plot: abundances vs. time](/_static/fig_plot_reactions.png)
 
 It can sometimes be useful to plot all the major formation and destruction reactions for a particular species. This can easily be done with a short code, eg:
 
@@ -379,7 +382,7 @@ The dashboard displays model parameters and other useful diagnostic plots includ
 ```python
 analysis.plot_dashboard()               
 ```
-[example plot]
+![Example plot: abundances vs. time](/_static/fig_plot_dashboard.png)
 
 
 ### Additional tools
@@ -387,6 +390,12 @@ analysis.plot_dashboard()
 Additional analysis tools (eg. interactive plots, network path analysis) are available in the GUI. Future versions of the code will also include these in the ```Analysis``` module.
 
 
+## Export data
 
+Abundance data can be exported to .csv format using the helper function in the ```Analysis``` module:
 
-
+```python
+# Export abundances to CSV
+analysis = simba.Analysis(network)
+analysis.export_abundance_data('abundances.csv')
+'''

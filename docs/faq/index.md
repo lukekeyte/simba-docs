@@ -98,22 +98,13 @@ plt.grid(True, which="both", ls="-")
 plt.show()
 ```
 
-### How do I analyze the dominant formation/destruction pathways?
-The `Analysis` module includes functionality to identify and visualize the dominant formation and destruction pathways for any species:
-
-```python
-# Analyze pathways for CO
-analysis = simba.Analysis(network)
-analysis.plot_pathways('CO')
-```
-
 ### Can I export my results for use in other tools?
 Yes, you can export the results to standard formats like CSV for further analysis:
 
 ```python
 # Export abundances to CSV
 analysis = simba.Analysis(network)
-analysis.export_abundances('abundances.csv')
+analysis.export_abundance_data('abundances.csv')
 ```
 
 
@@ -139,5 +130,5 @@ Examples of `SIMBA` applications can be found in our code paper (citation in the
 ## Miscellaneous
 
 ### What is LukeNet?
-LukeNet?
+The LukeNet module is available to `SIMBA` platinum users.
 
